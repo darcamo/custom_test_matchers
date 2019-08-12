@@ -1,5 +1,5 @@
-#ifndef CPPSIM_DETAILS_UTIL_H
-#define CPPSIM_DETAILS_UTIL_H
+#ifndef CUSTOM_CATCH_MATCHERS_DETAILS_UTIL_H
+#define CUSTOM_CATCH_MATCHERS_DETAILS_UTIL_H
 
 namespace details {
 
@@ -10,6 +10,6 @@ namespace details {
  */
 double fixAngle(double angleRad);
 
-}
+} // namespace details
 
-#endif  // CPPSIM_UTIL_H
+#endif // CUSTOM_CATCH_MATCHERS_UTIL_H
