@@ -1,10 +1,17 @@
 #include "util.h"
+#include <cmath>
 
 namespace details {
 
 double fixAngle(double angleRad) {
   constexpr const double PI =
       3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679;
+
+  // Make sure small negative numbers, such as -1e-15 are not mapped to 2pi,
+  // instead of 0
+  if (std::abs(angleRad) < 1e-10) {
+    angleRad = 0.0;
+  }
 
   auto quotient = static_cast<int>(angleRad / (2 * PI));
 

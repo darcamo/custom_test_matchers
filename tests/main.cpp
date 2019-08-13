@@ -45,6 +45,12 @@ TEST_CASE("Test util functions") {
     }
   }
 
+  SECTION("Test EqualsAngle") {
+    REQUIRE_THAT(2.5*PI, EqualsAngle(0.5*PI));
+
+    REQUIRE_THAT(-1e-16, EqualsAngle(1e-16));
+  }
+
   SECTION("Test StringMaker") {
     auto convert = [](auto container) {
       return StringMaker<decltype(container)>::convert(container);
