@@ -138,13 +138,13 @@ public:
 // version for the case of a tuple of two doubles. The actual implementation of
 // this specialization is provided in the cpp file.
 template <>
-bool Tuple2EqualsMatcher<double, double>::match(const Tuple2 &t) const {
+inline bool Tuple2EqualsMatcher<double, double>::match(const Tuple2 &t) const {
   return (std::get<0>(this->t) == Approx(std::get<0>(t))) &&
          (std::get<1>(this->t) == Approx(std::get<1>(t)));
 }
 
 template <typename T, typename U>
-bool Tuple2EqualsMatcher<T, U>::match(const Tuple2 &t) const {
+inline bool Tuple2EqualsMatcher<T, U>::match(const Tuple2 &t) const {
   return this->t == t;
 }
 
