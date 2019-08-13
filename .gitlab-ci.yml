@@ -1,0 +1,33 @@
+variables:
+  # CONAN_USER_HOME: /builds/5gchannel/fivegchannelmodel/conan_home
+  CONAN_CPU_COUNT: 6
+  CONAN_NON_INTERACTIVE: 1
+
+default:
+  image: conanio/gcc8
+
+stages:
+  - Build
+  - Test
+
+before_script:
+  - sudo pip install -U conan-package-tools && sudo pip install -U conan && conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan && conan remote add darcamo-bintray https://api.bintray.com/conan/darcamo/cppsim && conan remote add conan-community https://api.bintray.com/conan/conan-community/conan
+  - mkdir -p build_release && cd build_release && conan install .. -o armadillo:use_system_libs=True --build missing -s build_type=Release && cd ..
+
+Build:
+  stage: Build
+  script:
+    - cd build_release
+    - cmake .. -DCMAKE_BUILD_TYPE=Release && make -j $CONAN_CPU_COUNT test_custom_test_matchers
+  artifacts:
+    paths:
+      - build_release/bin/
+    expire_in: 20 minutes
+
+Run Tests:
+  stage: Test
+  before_script:
+    - sudo apt update && sudo apt install -y libhdf5-dev libblas-dev liblapacke-dev
+  script:
+    - cd build_release/bin && ./test_custom_test_matchers
+
