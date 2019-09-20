@@ -44,6 +44,10 @@ inline details::AngleEqualsMatcher EqualsAngle(double angle) {
   return details::AngleEqualsMatcher(angle);
 }
 
+inline details::AngleDegEqualsMatcher EqualsAngleDeg(double angle) {
+    return details::AngleDegEqualsMatcher(angle);
+}
+
 template <typename T, typename U>
 inline details::Tuple2EqualsMatcher<T, U> Equals(std::tuple<T, U> t) {
   return details::Tuple2EqualsMatcher<T, U>(t);

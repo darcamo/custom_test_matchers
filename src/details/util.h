@@ -10,6 +10,13 @@ namespace details {
  */
 double fixAngle(double angleRad);
 
+/**
+ * Change an angle (in degrees) to the interval [0,360)
+ * @param angleDeg The angle (in degrees)
+ * @return The angle in the interval [0,360)
+ */
+double fixAngleDeg(double angleDeg);
+
 } // namespace details
 
 #endif // CUSTOM_CATCH_MATCHERS_UTIL_H

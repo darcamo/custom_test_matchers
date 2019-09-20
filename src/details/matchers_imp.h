@@ -67,6 +67,7 @@ public:
     return "is equal to " + Catch::StringMaker<Tuple2>::convert(this->t);
   }
 };
+
 /**
  * A catch2 test matcher for comparing if two angles (in radians) are equal.
  *
@@ -109,6 +110,52 @@ public:
                        fmt::v5::arg("angleApprox", rad2deg(fixAngle(angle))));
   }
 };
+
+
+/**
+ * A catch2 test matcher for comparing if two angles (in degrees) are equal.
+ *
+ * This matcher will ignore full rotations such that two angles can be equal if
+ * they "stop" at the same point no matter if the number of full rotations are
+ * different.
+ */
+class AngleDegEqualsMatcher : public Catch::MatcherBase<double> {
+protected:
+  // We will cache the value passed to the last call to "match" such that we can
+  // show it in the describe function
+  mutable double lastMatchedAngle = 0;
+  double angle;
+
+public:
+  explicit AngleDegEqualsMatcher(double angle) : angle(angle) {}
+  // Performs the test for this matcher
+  bool match(const double &t) const override {
+    lastMatchedAngle = t;
+    auto margin = 1e-4;
+    return almostEqualAnglesDeg(this->angle, t, margin);
+  }
+
+  // Produces a string describing what this matcher does. It should
+  // include any provided data (in the constructor) and
+  // be written as if it were stating a fact (in the output it will be
+  // preceded by the value under test).
+  [[nodiscard]] std::string describe() const override {
+    auto deg2rad = [](auto angle_deg) {
+      constexpr const double PI =
+          3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679;
+      return PI * angle_deg / 180.0;
+    };
+
+    return fmt::format("° (approx {lastMatchedAngleApprox}) is equal to "
+                       "{angle}° (approx {angleApprox})",
+                       fmt::v5::arg("lastMatchedAngleApprox",
+                                    deg2rad(fixAngleDeg(lastMatchedAngle))),
+                       fmt::arg("angle", angle),
+                       fmt::v5::arg("angleApprox", deg2rad(fixAngleDeg(angle))));
+  }
+};
+
+
 
 /**
  * A catch2 test matcher for checking if a value is inside an interval (closed

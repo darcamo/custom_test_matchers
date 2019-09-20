@@ -46,6 +46,32 @@ TEST_CASE("Test util functions") {
     }
   }
 
+  SECTION("Test fixAngleDeg") {
+      std::uniform_real_distribution<double> dist(0, 360);
+
+      // Sanity check: fixAngleDeg should not change an angle already in the [0,360.0)
+      // range
+      for (int i = 0; i < 100; ++i) {
+          auto angle = dist(rng);
+          REQUIRE(equal(angle, fixAngleDeg(angle)));
+      }
+
+      // Check some cases that fall outside the [0, 360.0) range
+      REQUIRE(equal(fixAngleDeg(0.99 * 360.0), 0.99 * 360.0));
+      REQUIRE(equal(fixAngleDeg(-0.99 * 360.0), 0.01 * 360.0));
+      REQUIRE(equal(fixAngleDeg(-3 * 180.0), 180.0));
+      REQUIRE(equal(fixAngleDeg(-180.0 / 4.0), 7.0 / 4.0 * 180.0));
+      REQUIRE(equal(fixAngleDeg(14.8 * 180.0), 0.8 * 180.0));
+      REQUIRE(equal(fixAngleDeg(390 * 180.0 / 180.0), 30 * 180.0 / 180));
+
+      for (int j = 0; j < 100; ++j) {
+          auto angle = dist(rng);
+          REQUIRE(equal(fixAngleDeg(angle + 4 * 180.0), angle));
+          REQUIRE(equal(fixAngleDeg(angle - 8 * 180.0), angle));
+          REQUIRE(equal(fixAngleDeg(-angle), 360.0 - angle));
+      }
+  }
+
   SECTION("Test Equals for armadillo types") {
     arma::vec v1{1.5, 2.7, -5.5};
     arma::vec v2{1.5, 2.7, -5.5};
@@ -81,6 +107,12 @@ TEST_CASE("Test util functions") {
     REQUIRE_THAT(2.5 * PI, EqualsAngle(0.5 * PI));
 
     REQUIRE_THAT(-1e-16, EqualsAngle(1e-16));
+  }
+
+  SECTION("Test EqualsAngleDeg") {
+      REQUIRE_THAT(2.5 * 180.0, EqualsAngleDeg(0.5 * 180.0));
+
+      REQUIRE_THAT(-1e-16, EqualsAngleDeg(1e-16));
   }
 
   SECTION("Test StringMaker") {
