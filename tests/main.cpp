@@ -86,6 +86,13 @@ TEST_CASE("Test util functions") {
     arma::vec v1_times2 = 2 * v1;
     REQUIRE_THAT(v1_times2, Equals(2 * v1));
     REQUIRE_THAT(v1_times2, EqualsWithinTolerance(2 * v1, 1e-8));
+
+    arma::vec v3{-2, 0, 1};
+    arma::vec v1plusv3 = v1 + v3;
+    REQUIRE_THAT(v1plusv3, Equals(v1 + v3));
+    REQUIRE_THAT(v1 + v3, Equals(v1plusv3));
+    REQUIRE_THAT(v1plusv3, EqualsWithinTolerance(v1 + v3, 1e-8));
+    REQUIRE_THAT(v1 + v3, EqualsWithinTolerance(v1plusv3, 1e-8));
   }
 
   SECTION("Test Equals for tuples with two elements") {
