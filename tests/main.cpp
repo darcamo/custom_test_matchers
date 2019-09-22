@@ -82,6 +82,10 @@ TEST_CASE("Test util functions") {
     REQUIRE_THAT(v1, !Equals(v2_noisy));
     REQUIRE_THAT(v1, Equals(v2_noisy, 1e-8));
     REQUIRE_THAT(v1, EqualsWithinTolerance(v2_noisy, 1e-8));
+
+    arma::vec v1_times2 = 2 * v1;
+    REQUIRE_THAT(v1_times2, Equals(2 * v1));
+    REQUIRE_THAT(v1_times2, EqualsWithinTolerance(2 * v1, 1e-8));
   }
 
   SECTION("Test Equals for tuples with two elements") {

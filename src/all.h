@@ -33,11 +33,11 @@ template <typename T, typename = typename std::enable_if<
                           arma::is_arma_type<T>::value ||
                           arma::is_arma_cube_type<T>::value>::type>
 inline auto Equals(T c, double tol = 1e-10) {
-  return details::ArmadilloEqualsMatcher(c, tol);
+  return details::ArmadilloEqualsMatcher(c.eval(), tol);
 }
 
 template <class T> inline auto EqualsWithinTolerance(T c, double tol) {
-  return details::ArmadilloEqualsMatcher(c, tol);
+  return details::ArmadilloEqualsMatcher(c.eval(), tol);
 }
 
 inline details::AngleEqualsMatcher EqualsAngle(double angle) {
