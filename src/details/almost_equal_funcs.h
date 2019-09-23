@@ -16,8 +16,7 @@ namespace details {
  * @param margin Tolerance for equality comparison
  * @return True if both angles are equal up to the margin.
  */
-bool almostEqualAngles(double angleRad1, double angleRad2,
-                       double margin = 1e-5);
+bool almostEqualAngles(double angleRad1, double angleRad2, double margin = 1e-5);
 
 /**
  * Test that two angles (in degrees) are equal up to some margin
@@ -30,8 +29,7 @@ bool almostEqualAngles(double angleRad1, double angleRad2,
  * @param margin Tolerance for equality comparison
  * @return True if both angles are equal up to the margin.
  */
-bool almostEqualAnglesDeg(double angleDeg1, double angleDeg2,
-                       double margin = 1e-5);
+bool almostEqualAnglesDeg(double angleDeg1, double angleDeg2, double margin = 1e-5);
 
-} // namespace details
-#endif // CUSTOM_CATCH_MATCHERS_ALMOST_EQUAL_FUNCS_H
+}  // namespace details
+#endif  // CUSTOM_CATCH_MATCHERS_ALMOST_EQUAL_FUNCS_H

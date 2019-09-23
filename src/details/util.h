@@ -17,6 +17,6 @@ double fixAngle(double angleRad);
  */
 double fixAngleDeg(double angleDeg);
 
-} // namespace details
+}  // namespace details
 
-#endif // CUSTOM_CATCH_MATCHERS_UTIL_H
+#endif  // CUSTOM_CATCH_MATCHERS_UTIL_H
