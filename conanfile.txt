@@ -2,7 +2,7 @@
 Catch2/[>=2.7.2]@catchorg/stable
 # gsl_microsoft/[>=2.0.0]@bincrafters/stable
 fmt/[>=6.0.0]@bincrafters/stable
-armadillo/[>=9.400.3]@darcamo/stable
+armadillo/[>=9.800.3]@darcamo/stable
 
 [generators]
 cmake
