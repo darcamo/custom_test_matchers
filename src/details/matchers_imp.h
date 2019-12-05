@@ -1,7 +1,7 @@
 #ifndef CUSTOM_CATCH_MATCHERS_MATCHERS_IMP_H
 #define CUSTOM_CATCH_MATCHERS_MATCHERS_IMP_H
 
-#include <spdlog/fmt/fmt.h>
+#include <fmt/format.h>
 #include <armadillo>
 #include <catch2/catch.hpp>
 #include "almost_equal_funcs.h"
@@ -100,8 +100,8 @@ public:
         return fmt::format(
             " (approx {lastMatchedAngleApprox}°) is equal to "
             "{angle} (approx {angleApprox}°)",
-            fmt::v5::arg("lastMatchedAngleApprox", rad2deg(fixAngle(lastMatchedAngle))), fmt::arg("angle", angle),
-            fmt::v5::arg("angleApprox", rad2deg(fixAngle(angle))));
+            fmt::arg("lastMatchedAngleApprox", rad2deg(fixAngle(lastMatchedAngle))), fmt::arg("angle", angle),
+            fmt::arg("angleApprox", rad2deg(fixAngle(angle))));
     }
 };
 
@@ -142,8 +142,8 @@ public:
         return fmt::format(
             "° (approx {lastMatchedAngleApprox}) is equal to "
             "{angle}° (approx {angleApprox})",
-            fmt::v5::arg("lastMatchedAngleApprox", deg2rad(fixAngleDeg(lastMatchedAngle))), fmt::arg("angle", angle),
-            fmt::v5::arg("angleApprox", deg2rad(fixAngleDeg(angle))));
+            fmt::arg("lastMatchedAngleApprox", deg2rad(fixAngleDeg(lastMatchedAngle))), fmt::arg("angle", angle),
+            fmt::arg("angleApprox", deg2rad(fixAngleDeg(angle))));
     }
 };
 

@@ -15,7 +15,7 @@ add_library(custom_test_matchers
 target_link_libraries(custom_test_matchers
   CONAN_PKG::Catch2
   CONAN_PKG::armadillo
-  CONAN_PKG::spdlog
+  CONAN_PKG::fmt
   )
 
 target_include_directories(custom_test_matchers PUBLIC .)
