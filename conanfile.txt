@@ -1,5 +1,5 @@
 [requires]
-Catch2/[>=2.7.2]@catchorg/stable
+Catch2/[>=2.11.0]@catchorg/stable
 # gsl_microsoft/[>=2.0.0]@bincrafters/stable
 fmt/[>=6.0.0]@bincrafters/stable
 armadillo/[>=9.800.3]@darcamo/stable
@@ -8,5 +8,6 @@ armadillo/[>=9.800.3]@darcamo/stable
 cmake
 
 [options]
-# armadillo:use_extern_cxx11_rng=True
-# armadillo:use_system_blas=False
+armadillo:use_extern_cxx11_rng=True
+armadillo:use_system_blas=True
+armadillo:use_system_hdf5=True
