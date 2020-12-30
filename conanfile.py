@@ -19,8 +19,8 @@ class CustomtestmatchersConan(ConanFile):
     exports_sources = "CMakeLists.txt", "README.md", "src/*", "tests/*"
 
     def requirements(self):
-        self.requires("Catch2/[>=2.11.0]@catchorg/stable")
-        self.requires("fmt/[>=6.0.0]@bincrafters/stable")
+        self.requires("Catch2/[>=2.11.1]@catchorg/stable")
+        self.requires("fmt/[>=7.1.3]")
         self.requires("armadillo/[>=10.1.2]@darcamo/stable")
         if self.options.shared:
             self.options["armadillo"].shared = True
