@@ -16,7 +16,7 @@ class CustomtestmatchersConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = {"shared": False}
     generators = "cmake"
-    exports_sources = "*"
+    exports_sources = "CMakeLists.txt", "README.md", "src/*", "tests/*"
 
     def requirements(self):
         self.requires("Catch2/[>=2.11.0]@catchorg/stable")
