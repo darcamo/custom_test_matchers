@@ -21,7 +21,7 @@ class CustomtestmatchersConan(ConanFile):
     def requirements(self):
         self.requires("Catch2/[>=2.11.1]@catchorg/stable")
         self.requires("fmt/[>=7.1.3]")
-        self.requires("armadillo/[>=10.1.2]@darcamo/stable")
+        self.requires("armadillo/[>=10.5.0]")
         if self.options.shared:
             self.options["armadillo"].shared = True
         # self.options["armadillo"].use_extern_cxx11_rng = True
