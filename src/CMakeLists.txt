@@ -13,7 +13,7 @@ add_library(custom_test_matchers
   details/util.h
   )
 target_link_libraries(custom_test_matchers
-  CONAN_PKG::Catch2
+  CONAN_PKG::catch2
   CONAN_PKG::armadillo
   CONAN_PKG::fmt
   )
