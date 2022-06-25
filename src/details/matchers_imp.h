@@ -3,7 +3,7 @@
 
 #include <fmt/format.h>
 #include <armadillo>
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 #include "almost_equal_funcs.h"
 #include "custom_string_makers.h"
 #include "util.h"
@@ -17,7 +17,7 @@ namespace details {
  * the suggested way to create the match.
  */
 template <class ArmaType>
-class ArmadilloEqualsMatcher : public Catch::Matchers::Impl::MatcherBase<ArmaType> {
+class ArmadilloEqualsMatcher : public Catch::Matchers::MatcherBase<ArmaType> {
 protected:
     ArmaType value;
     const double tol;
@@ -43,7 +43,7 @@ public:
  * equal.
  */
 template <typename T, typename U>
-class Tuple2EqualsMatcher : public Catch::Matchers::Impl::MatcherBase<std::tuple<T, U>> {
+class Tuple2EqualsMatcher : public Catch::Matchers::MatcherBase<std::tuple<T, U>> {
 protected:
     using Tuple2 = std::tuple<T, U>;
     Tuple2 t;
@@ -70,7 +70,7 @@ public:
  * they "stop" at the same point no matter if the number of full rotations are
  * different.
  */
-class AngleEqualsMatcher : public Catch::MatcherBase<double> {
+class AngleEqualsMatcher : public Catch::Matchers::MatcherBase<double> {
 protected:
     // We will cache the value passed to the last call to "match" such that we can
     // show it in the describe function
@@ -112,7 +112,7 @@ public:
  * they "stop" at the same point no matter if the number of full rotations are
  * different.
  */
-class AngleDegEqualsMatcher : public Catch::MatcherBase<double> {
+class AngleDegEqualsMatcher : public Catch::Matchers::MatcherBase<double> {
 protected:
     // We will cache the value passed to the last call to "match" such that we can
     // show it in the describe function
@@ -152,7 +152,7 @@ public:
  * on minimum and open on maximum).
  */
 template <typename T>
-class IsInRangeMatcher : public Catch::Matchers::Impl::MatcherBase<T> {
+class IsInRangeMatcher : public Catch::Matchers::MatcherBase<T> {
 protected:
     T minimum;
     T maximum;
@@ -173,7 +173,7 @@ public:
 // this specialization is provided in the cpp file.
 template <>
 inline bool Tuple2EqualsMatcher<double, double>::match(const Tuple2 &t) const {
-    return (std::get<0>(this->t) == Approx(std::get<0>(t))) && (std::get<1>(this->t) == Approx(std::get<1>(t)));
+    return (std::get<0>(this->t) == Catch::Approx(std::get<0>(t))) && (std::get<1>(this->t) == Catch::Approx(std::get<1>(t)));
 }
 
 template <typename T, typename U>

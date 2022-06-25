@@ -6,7 +6,7 @@ from conans import CMake, ConanFile, tools
 
 class CustomtestmatchersConan(ConanFile):
     name = "custom_test_matchers"
-    version = "1.0.0"
+    version = "2.0.0"  # Version 2 changed catch2 version to 3 (some breaking changes)
     license = "GTEL Licence"
     author = "Darlan Cavalcante Moreira <darcamo@gmail.com>"
     url = "https://github.com/darcamo/conan-custom_test_matchers"
@@ -19,7 +19,7 @@ class CustomtestmatchersConan(ConanFile):
     exports_sources = "CMakeLists.txt", "README.md", "src/*", "tests/*"
 
     def requirements(self):
-        self.requires("catch2/[>=2.13.7]")
+        self.requires("catch2/[>=3.0.1]")
         self.requires("fmt/[>=8.0.1]")
         self.requires("armadillo/[>=10.7.1]")
         if self.options.shared:

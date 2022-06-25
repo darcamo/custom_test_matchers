@@ -1,10 +1,11 @@
 #define CATCH_CONFIG_MAIN
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 #include "custom_test_matchers/all.h"
 #include <armadillo>
 
 using namespace Catch;
+using namespace Catch::Matchers;
 
 constexpr const double PI =
     3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679;

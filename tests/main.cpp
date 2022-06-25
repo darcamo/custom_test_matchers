@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include <armadillo>
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <random>
 #include <sstream>
 #include <tuple>
@@ -132,25 +132,25 @@ TEST_CASE("Test util functions") {
                 {
                     arma::ivec v{1, 2, 3};
                     std::string expetedStr_v = "Vector (x3)\n        1        2        3\n";
-                    REQUIRE_THAT(convert(v), Equals(expetedStr_v));
+                    REQUIRE_THAT(convert(v), Catch::Matchers::Equals(expetedStr_v));
                 }
 
                 {
                     arma::vec v{1, 2, 3};
                     std::string expetedStr_v = "Vector (x3)\n   1.0000   2.0000   3.0000\n";
-                    REQUIRE_THAT(convert(v), Equals(expetedStr_v));
+                    REQUIRE_THAT(convert(v), Catch::Matchers::Equals(expetedStr_v));
                 }
 
                 {
                     arma::irowvec v{1, 2, 3};
                     std::string expetedStr_v = "Row Vector (x3)\n        1        2        3\n";
-                    REQUIRE_THAT(convert(v), Equals(expetedStr_v));
+                    REQUIRE_THAT(convert(v), Catch::Matchers::Equals(expetedStr_v));
                 }
 
                 {
                     arma::rowvec v{1, 2, 3};
                     std::string expetedStr_v = "Row Vector (x3)\n   1.0000   2.0000   3.0000\n";
-                    REQUIRE_THAT(convert(v), Equals(expetedStr_v));
+                    REQUIRE_THAT(convert(v), Catch::Matchers::Equals(expetedStr_v));
                 }
             }
 
@@ -160,7 +160,7 @@ TEST_CASE("Test util functions") {
                     std::string expetedStr_v =
                         "Vector (x10) -> Only showing from index 0 to 6\n        1       "
                         " 2        3        4        5        6        7\n";
-                    REQUIRE_THAT(convert(v), Equals(expetedStr_v));
+                    REQUIRE_THAT(convert(v), Catch::Matchers::Equals(expetedStr_v));
                 }
 
                 {
@@ -168,7 +168,7 @@ TEST_CASE("Test util functions") {
                     std::string expetedStr_v =
                         "Vector (x10) -> Only showing from index 0 to 6\n   1.0000   "
                         "2.0000   3.0000   4.0000   5.0000   6.0000   7.0000\n";
-                    REQUIRE_THAT(convert(v), Equals(expetedStr_v));
+                    REQUIRE_THAT(convert(v), Catch::Matchers::Equals(expetedStr_v));
                 }
 
                 {
@@ -176,7 +176,7 @@ TEST_CASE("Test util functions") {
                     std::string expetedStr_v =
                         "Row Vector (x10) -> Only showing from index 0 to 6\n        1   "
                         "     2        3        4        5        6        7\n";
-                    REQUIRE_THAT(convert(v), Equals(expetedStr_v));
+                    REQUIRE_THAT(convert(v), Catch::Matchers::Equals(expetedStr_v));
                 }
 
                 {
@@ -184,7 +184,7 @@ TEST_CASE("Test util functions") {
                     std::string expetedStr_v =
                         "Row Vector (x10) -> Only showing from index 0 to 6\n   1.0000   "
                         "2.0000   3.0000   4.0000   5.0000   6.0000   7.0000\n";
-                    REQUIRE_THAT(convert(v), Equals(expetedStr_v));
+                    REQUIRE_THAT(convert(v), Catch::Matchers::Equals(expetedStr_v));
                 }
             }
         }
@@ -196,7 +196,7 @@ TEST_CASE("Test util functions") {
                     std::string expetedStr_m =
                         "(3x3)\n        1        2        3\n        4        5        "
                         "6\n        7        8        9\n";
-                    REQUIRE_THAT(convert(m), Equals(expetedStr_m));
+                    REQUIRE_THAT(convert(m), Catch::Matchers::Equals(expetedStr_m));
                 }
 
                 {
@@ -204,7 +204,7 @@ TEST_CASE("Test util functions") {
                     std::string expetedStr_m =
                         "(3x3)\n   1.0000   2.0000   3.0000\n   4.0000   5.0000   "
                         "6.0000\n   7.0000   8.0000   9.0000\n";
-                    REQUIRE_THAT(convert(m), Equals(expetedStr_m));
+                    REQUIRE_THAT(convert(m), Catch::Matchers::Equals(expetedStr_m));
                 }
             }
 
@@ -215,7 +215,7 @@ TEST_CASE("Test util functions") {
                         "(2x9) -> Only showing from column 0 to 4\n        1        2    "
                         "    3        4        5\n        9        8        7        6   "
                         "     5\n";
-                    REQUIRE_THAT(convert(m), Equals(expetedStr_m));
+                    REQUIRE_THAT(convert(m), Catch::Matchers::Equals(expetedStr_m));
                 }
 
                 {
@@ -224,7 +224,7 @@ TEST_CASE("Test util functions") {
                         "(2x9) -> Only showing from column 0 to 4\n   1.0000   2.0000   "
                         "3.0000   4.0000   5.0000\n   9.0000   8.0000   7.0000   6.0000  "
                         " 5.0000\n";
-                    REQUIRE_THAT(convert(m), Equals(expetedStr_m));
+                    REQUIRE_THAT(convert(m), Catch::Matchers::Equals(expetedStr_m));
                 }
 
                 {
@@ -235,7 +235,7 @@ TEST_CASE("Test util functions") {
                         " 3\n        4        5        6\n        7        8        9\n  "
                         "      9        8        7\n        6        5        4\n        "
                         "3        2        1\n";
-                    REQUIRE_THAT(convert(m), Equals(expetedStr_m));
+                    REQUIRE_THAT(convert(m), Catch::Matchers::Equals(expetedStr_m));
                 }
 
                 {
@@ -245,7 +245,7 @@ TEST_CASE("Test util functions") {
                         "3.0000\n   4.0000   5.0000   6.0000\n   7.0000   8.0000   "
                         "9.0000\n   9.0000   8.0000   7.0000\n   6.0000   5.0000   "
                         "4.0000\n   3.0000   2.0000   1.0000\n";
-                    REQUIRE_THAT(convert(m), Equals(expetedStr_m));
+                    REQUIRE_THAT(convert(m), Catch::Matchers::Equals(expetedStr_m));
                 }
                 /// @todo Implement-me
             }

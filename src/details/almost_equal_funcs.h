@@ -1,7 +1,7 @@
 #ifndef CUSTOM_CATCH_MATCHERS_ALMOST_EQUAL_FUNCS_H
 #define CUSTOM_CATCH_MATCHERS_ALMOST_EQUAL_FUNCS_H
 
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 namespace details {
 

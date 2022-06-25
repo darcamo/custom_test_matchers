@@ -2,7 +2,7 @@
 #define CUSTOM_CATCH_MATCHERS_CUSTOM_STRING_MAKERS_H
 
 #include <armadillo>
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <tuple>
 
 // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

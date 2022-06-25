@@ -1,7 +1,7 @@
 #ifndef CUSTOM_CATCH_MATCHERS_ALL_H
 #define CUSTOM_CATCH_MATCHERS_ALL_H
 
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <tuple>
 #include "details/almost_equal_funcs.h"
 #include "details/custom_string_makers.h"
