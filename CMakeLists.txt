@@ -1,23 +1,40 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.15)
+project(custom_test_matchers CXX)
 
-project(custom_catch_matchers)
+add_library(custom_test_matchers)
+target_sources(custom_test_matchers PUBLIC
+  FILE_SET HEADERS
+  BASE_DIRS include
+  FILES
+  include/custom_test_matchers/all.h
+  include/custom_test_matchers/details/almost_equal_funcs.h
+  include/custom_test_matchers/details/custom_string_makers.h
+  include/custom_test_matchers/details/matchers_imp.h
+  include/custom_test_matchers/details/util.h
+)
 
-# Set the standard to C++17
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED YES)
+target_sources(custom_test_matchers PRIVATE
+  src/all.cpp
+  src/details/almost_equal_funcs.cpp
+  src/details/custom_string_makers.cpp
+  src/details/matchers_imp.cpp
+  src/details/util.cpp
+)
 
-# xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# xxxxxxxxxx Conan Support xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-if(EXISTS ${CMAKE_CURRENT_BINARY_DIR}/conanbuildinfo.cmake)
-  include(${CMAKE_CURRENT_BINARY_DIR}/conanbuildinfo.cmake)
-  conan_basic_setup(TARGETS)
-else()
-  message(FATAL_ERROR "The file conanbuildinfo.cmake doesn't exist! Run the command below from conan folder
-    conan install .. --build=missing -s build_type=Release")
-endif()
-# xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+find_package(Catch2 REQUIRED)
+find_package(armadillo REQUIRED)
+find_package(fmt REQUIRED)
 
 
-add_subdirectory(src)
+target_link_libraries(custom_test_matchers PUBLIC
+  Catch2::Catch2
+  armadillo::armadillo
+  fmt::fmt
+)
+
+
+install(TARGETS custom_test_matchers)
+install(TARGETS custom_test_matchers FILE_SET HEADERS DESTINATION include)
+
+
 add_subdirectory(tests)

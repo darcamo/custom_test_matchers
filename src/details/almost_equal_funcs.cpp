@@ -1,6 +1,6 @@
-#include "almost_equal_funcs.h"
+#include "custom_test_matchers/details/almost_equal_funcs.h"
 #include <catch2/catch_approx.hpp>
-#include "util.h"
+#include "custom_test_matchers/details/util.h"
 
 namespace details {
 

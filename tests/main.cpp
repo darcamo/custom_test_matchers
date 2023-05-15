@@ -1,10 +1,9 @@
-#define CATCH_CONFIG_MAIN
 #include <armadillo>
-#include <catch2/catch_all.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <random>
 #include <sstream>
 #include <tuple>
-#include "all.h"
+#include "custom_test_matchers/all.h"
 
 using namespace details;
 using namespace Catch;
